@@ -1,10 +1,12 @@
 from flask import Flask, request, make_response, session, render_template, redirect, abort, jsonify
-from data import db_session
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+
 from data.news import News
 from data.users import User, LoginForm
 from forms.news import NewsForm
 from forms.user import RegisterForm
-from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from data import db_session, news_api
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -27,6 +29,7 @@ def load_user(user_id):
     db_sess = db_session.create_session()
     return db_sess.query(User).get(user_id)
 
+
 @app.route("/")
 def index():
     db_sess = db_session.create_session()
@@ -37,6 +40,7 @@ def index():
         news = db_sess.query(News).filter(News.is_private != True)
     news = db_sess.query(News).filter(News.is_private != True)
     return render_template("index.html", news=news)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -51,6 +55,7 @@ def login():
                                message="Неправильный логин или пароль",
                                form=form)
     return render_template('login.html', title='Авторизация', form=form)
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def reqister():
@@ -76,6 +81,7 @@ def reqister():
         return redirect('/login')
     return render_template('register.html', title='Регистрация', form=form)
 
+
 @app.route('/logout')
 @login_required
 def logout():
@@ -83,7 +89,7 @@ def logout():
     return redirect("/")
 
 
-@app.route('/news',  methods=['GET', 'POST'])
+@app.route('/news', methods=['GET', 'POST'])
 @login_required
 def add_news():
     form = NewsForm()
@@ -99,6 +105,7 @@ def add_news():
         return redirect('/')
     return render_template('news.html', title='Добавление новости',
                            form=form)
+
 
 @app.route('/news/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -132,6 +139,7 @@ def edit_news(id):
                            title='Редактирование новости',
                            form=form
                            )
+
 
 @app.route('/news_delete/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -172,17 +180,12 @@ def session_test():
         f"Вы пришли на эту страницу {visits_count + 1} раз")
 
 
-from data import db_session, news_api
-
-
 def main():
     db_session.global_init("db/blogs.db")
     app.register_blueprint(news_api.blueprint)
     app.run()
 
 
-
-
 if __name__ == '__main__':
     main()
-    #app.run(port=5000, host='127.0.0.1')
+    # app.run(port=5000, host='127.0.0.1')

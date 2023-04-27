@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <title>{{title}}</title>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="img-fluid" href="/"><img src="C:\Users\shami\PycharmProjects\sait\image\logo.png" alt="Logo"></a>
+        <ul class="nav nav-underline">
+          <li class="nav-item">
+            <a class="navbar-brand active" aria-current="page" href="#">Главная</a>
+          </li>
+          <li class="nav-item">
+            <a class="navbar-brand" href="#">Новости</a>
+          </li>
+          <li class="nav-item">
+            <a class="navbar-brand" href="#">Котировки</a>
+          </li>
+        </ul>
+        {% if current_user.is_authenticated %}
+        <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
+        {% else %}
+            <p>
+                <a class="btn btn-primary " href="/register">Зарегистрироваться</a>
+                <a class="btn btn-success" href="/login">Войти</a>
+            </p>
+        {% endif %}
+    </nav>
+</header>
+<main role="main" class="container">
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>
