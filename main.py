@@ -11,7 +11,6 @@ app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-from flask import make_response
 
 @app.errorhandler(404)
 def not_found(error):
