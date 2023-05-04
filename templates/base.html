@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,16 +11,16 @@
 <body>
 <header>
     <nav class="navbar navbar-dark bg-dark">
-        <a class="img-fluid" href="/"><img src="C:\Users\shami\PycharmProjects\sait\image\logo.png" alt="Logo"></a>
+        <a class="img-fluid" href="/"><img src="\static\logo.png" alt="Logo"></a>
         <ul class="nav nav-underline">
           <li class="nav-item">
-            <a class="navbar-brand active" aria-current="page" href="#">Главная</a>
+            <a class="navbar-brand active" aria-current="page" href="/index">Новости</a>
           </li>
           <li class="nav-item">
-            <a class="navbar-brand" href="#">Новости</a>
+            <a class="navbar-brand" href="#">Акции</a>
           </li>
           <li class="nav-item">
-            <a class="navbar-brand" href="#">Котировки</a>
+            <a class="navbar-brand" href="#">Криптовалюта</a>
           </li>
         </ul>
         {% if current_user.is_authenticated %}
