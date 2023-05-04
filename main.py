@@ -30,7 +30,7 @@ def load_user(user_id):
     return db_sess.query(User).get(user_id)
 
 
-@app.route("/")
+@app.route("/index")
 def news():
     db_sess = db_session.create_session()
     if current_user.is_authenticated:
@@ -45,6 +45,11 @@ def news():
 @app.route("/stock")
 def stock():
     pass
+
+
+@app.route("/")
+def sait():
+    return render_template("o_sait.html")
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -132,15 +137,13 @@ def edit_news(id):
             abort(404)
     if form.validate_on_submit():
         db_sess = db_session.create_session()
-        news = db_sess.query(News).filter(News.id == id,
-                                          News.user == current_user
-                                          ).first()
+        news = db_sess.query(News).filter(News.id == id, News.user == current_user).first()
         if news:
             news.title = form.title.data
             news.content = form.content.data
             news.is_private = form.is_private.data
             db_sess.commit()
-            return redirect('/')
+            return redirect('/index')
         else:
             abort(404)
     return render_template('news.html',
