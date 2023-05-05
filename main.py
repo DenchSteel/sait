@@ -30,8 +30,8 @@ def load_user(user_id):
     return db_sess.query(User).get(user_id)
 
 
-@app.route("/index")
-def news():
+@app.route("/")
+def index():
     db_sess = db_session.create_session()
     if current_user.is_authenticated:
         news = db_sess.query(News).filter(
@@ -40,16 +40,6 @@ def news():
         news = db_sess.query(News).filter(News.is_private != True)
     news = db_sess.query(News).filter(News.is_private != True)
     return render_template("index.html", news=news)
-
-
-@app.route("/stock")
-def stock():
-    pass
-
-
-@app.route("/")
-def sait():
-    return render_template("o_sait.html")
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -103,21 +93,18 @@ def logout():
 @login_required
 def add_news():
     form = NewsForm()
-    if request.method == "GET":
-        if form.validate_on_submit():
-            db_sess = db_session.create_session()
-            news = News()
-            news.title = form.title.data
-            news.content = form.content.data
-            news.is_private = form.is_private.data
-            current_user.news.append(news)
-            db_sess.merge(current_user)
-            db_sess.commit()
-            return redirect('/')
-        return render_template('news.html', title='Добавление новости',
-                               form=form)
-    if request.method == "POST":
-        return
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        news = News()
+        news.title = form.title.data
+        news.content = form.content.data
+        news.is_private = form.is_private.data
+        current_user.news.append(news)
+        db_sess.merge(current_user)
+        db_sess.commit()
+        return redirect('/')
+    return render_template('news.html', title='Добавление новости',
+                           form=form)
 
 
 @app.route('/news/<int:id>', methods=['GET', 'POST'])
@@ -137,13 +124,15 @@ def edit_news(id):
             abort(404)
     if form.validate_on_submit():
         db_sess = db_session.create_session()
-        news = db_sess.query(News).filter(News.id == id, News.user == current_user).first()
+        news = db_sess.query(News).filter(News.id == id,
+                                          News.user == current_user
+                                          ).first()
         if news:
             news.title = form.title.data
             news.content = form.content.data
             news.is_private = form.is_private.data
             db_sess.commit()
-            return redirect('/index')
+            return redirect('/')
         else:
             abort(404)
     return render_template('news.html',
