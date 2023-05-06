@@ -7,7 +7,6 @@ from forms.news import NewsForm
 from forms.user import RegisterForm
 from data import db_session, news_api
 from data.val import Currency
-import data.ak as stock
 
 
 app = Flask(__name__)
