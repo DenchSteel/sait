@@ -38,22 +38,7 @@ class Currency:
 	# Проверка изменения валюты
 	def check_currency(self, cur):
 		currency = float(self.get_currency_price().replace(",", "."))
-		print(f"Сейчас курс: 1 {cur} = {currency}")
+		return currency
 		# time.sleep(60)  # Засыпание программы на 3 секунды
 		# self.check_currency()
 
-if __name__ == '__main__':
-	currency = Currency(DOLLAR_RUB)
-	currency1 = Currency(Evro)
-	currency2 = Currency(Yan)
-	currency3 = Currency(STR)
-	currency4 = Currency(FR)
-	while True:
-		# Создание объекта и вызов метода
-		currency.check_currency("доллар")
-		currency1.check_currency("евро")
-		currency2.check_currency("юань")
-		currency3.check_currency("фунт стерлинга")
-		currency4.check_currency("щвецарский франк")
-
-		time.sleep(10)
