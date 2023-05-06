@@ -1,5 +1,6 @@
 from flask import Flask, request, make_response, session, render_template, redirect, abort, jsonify
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+import os
 
 from data.news import News
 from data.users import User, LoginForm
@@ -7,6 +8,7 @@ from forms.news import NewsForm
 from forms.user import RegisterForm
 from data import db_session, news_api
 from data.val import Currency
+import data.ak as stock
 
 
 app = Flask(__name__)
@@ -45,7 +47,7 @@ def news():
 
 @app.route("/stock")
 def stock():
-    stock.main()
+    os.system("streamlit run data/ak.py")
 
 
 @app.route("/currency")
