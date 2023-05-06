@@ -7,6 +7,7 @@ from forms.news import NewsForm
 from forms.user import RegisterForm
 from data import db_session, news_api
 from data.val import Currency
+import data.ak as stock
 
 
 app = Flask(__name__)
@@ -45,7 +46,7 @@ def news():
 
 @app.route("/stock")
 def stock():
-    pass
+    stock.main()
 
 
 @app.route("/currency")
@@ -62,7 +63,7 @@ def currency():
     GBP = Currency(GBP_).check_currency("Фунт стерлинга")
     CHF = Currency(CHF_).check_currency("Швейцарский франк")
 
-    return render_template("o_sait.html", title="Курс валют", usd=USD, eur=EUR, cny=CNY, gbr=GBP, chf=CHF)
+    return render_template("currency.html", title="Курс валют", usd=USD, eur=EUR, cny=CNY, gbr=GBP, chf=CHF)
 
 
 @app.route("/")

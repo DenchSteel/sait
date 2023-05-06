@@ -9,8 +9,6 @@ Evro = "https://www.google.com/search?q=%D0%B5%D0%B2%D1%80%D0%BE+%D0%BA+%D1%80%D
 Yan = "https://www.google.com/search?q=%D1%8E%D0%B0%D0%BD%D1%8C+%D0%BA+%D1%80%D1%83%D0%B1%D0%BB%D1%8E&sxsrf=APwXEdeXRCPWu48hol3cebaiTBtgJMqWKA%3A1683356745180&ei=SfxVZNXRCoKSwPAPtpiooAo&oq=%D1%8E+%D0%BA+%D1%80%D1%83%D0%B1%D0%BB%D1%8E&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQARgAMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB5KBAhBGABQAFjWHWDlMGgBcAF4AIABswOIAZgHkgEHMC4zLjQtMZgBAKABAcABAQ&sclient=gws-wiz-serp"
 STR = "https://www.google.com/search?q=%D1%84%D1%83%D0%BD%D1%82+%D1%81%D1%82%D0%B5%D1%80%D0%BB%D0%B8%D0%BD%D0%B3%D0%BE%D0%B2+%D0%BA+%D1%80%D1%83%D0%B1%D0%BB%D1%8E&sxsrf=APwXEdcKsJg6HSBV_oUN6QoPqRV0KvwQVw%3A1683358015833&ei=PwFWZPLDMo-yqwHropH4CQ&oq=%D1%84%D1%83%D0%BD%D1%82+%D1%81+%D0%BA+%D1%80%D1%83%D0%B1%D0%BB%D1%8E&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQARgAMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB46CggAEA0QgAQQsQM6BwgAEA0QgAQ6CggAEIoFELEDEEM6BwgAEIoFEEM6BQgAEIAEOg8IABCKBRCxAxBDEEYQggJKBAhBGABQAFiPGmDHKWgAcAF4AIABhAOIAdwIkgEHMC41LjAuMZgBAKABAcABAQ&sclient=gws-wiz-serp"
 FR = "https://www.google.com/search?q=%D1%88%D0%B2%D0%B5%D0%B9%D1%86%D0%B0%D1%80%D1%81%D0%BA%D0%B8%D0%B9+%D1%84%D1%80%D0%B0%D0%BD%D0%BA+%D0%BA+%D1%80%D1%83%D0%B1%D0%BB%D1%8E&sxsrf=APwXEdfiPLT_-vQy5lam1PDvIFiTFtKGzQ%3A1683358517974&ei=NQNWZOaOO-bIrgS_-LvYDg&oq=%D1%89+%D0%BA+%D1%80%D1%83%D0%B1%D0%BB%D1%8E&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQARgBMgsIABAHEB4Q8QQQCjILCAAQBxAeEPEEEAoyCAgAEAgQBxAeMgoIABAFEAcQHhAKOgoIABBHENYEELADOgoIABCKBRCwAxBDSgQIQRgAULsOWLsOYPEfaAFwAXgAgAGXAYgBlwGSAQMwLjGYAQCgAQHIAQrAAQE&sclient=gws-wiz-serp"
-
-
 # Основной класс
 class Currency:
 	# Ссылка на нужную страницу
@@ -40,10 +38,9 @@ class Currency:
 	# Проверка изменения валюты
 	def check_currency(self, cur):
 		currency = float(self.get_currency_price().replace(",", "."))
-		return f"currency"
+		print(f"Сейчас курс: 1 {cur} = {currency}")
 		# time.sleep(60)  # Засыпание программы на 3 секунды
 		# self.check_currency()
-
 
 if __name__ == '__main__':
 	currency = Currency(DOLLAR_RUB)

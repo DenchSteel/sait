@@ -9,7 +9,7 @@ data = pd.DataFrame(columns=tickers_list)
 # Fetch the data
 
 for ticker in tickers_list:
-    data[ticker] = yf.download(ticker, '2016-01-01')['Adj Close']
+    data[ticker] = yf.download(ticker,'2016-01-01')['Adj Close']
 
 for tkr in tickers_list:
 	dat = yf.Ticker(tkr)
